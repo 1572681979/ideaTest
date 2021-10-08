@@ -1,0 +1,54 @@
+{
+  "data": [
+    {
+      "upd_dt": "20211038",
+      "cash_amt": "12315.00",
+      "usr_nm": "张三",
+      "id": "2021081316122600001",
+      "cre_dt": "20210123",
+      "usr_sts": "1",
+      "mbl_no": "000001"
+    },
+    {
+      "upd_dt": "20210203",
+      "cash_amt": "561653.00",
+      "usr_nm": "李四",
+      "id": "2021081316131000002",
+      "cre_dt": "20210203",
+      "usr_sts": "0",
+      "mbl_no": "000002"
+    },
+    {
+      "upd_dt": "20210208",
+      "cash_amt": "1353.00",
+      "usr_nm": "王五",
+      "id": "2021081316134500003",
+      "cre_dt": "20210205",
+      "usr_sts": "1",
+      "mbl_no": "000003"
+    }
+  ],
+  "test_url":"https://www.baidu.com/",
+  "gda": {
+    "req_id": "opsMblListdemo014000000000002",
+    "msg_typ": "N",
+    "msg_cd": "SCM00000",
+    "msg_inf": "Success"
+  },
+  "rec_num": "3",
+  "req_url": "http://127.0.0.1:9084/demo/opsappbpc1/opsMbl/list.do?t=1629090796206&pag_no=1&limit=10&totalrows=0&search=",
+  "sys_tm_smp": "20210816131316",
+  "pag_no": "1",
+  "search": "",
+  "t": "1629090796206",
+  "txn_cd": "opsMblList",
+  "data_num": "3",
+  "sys_tm": "131316",
+  "limit": "10",
+  "totalrows": "0",
+  "pag_cnt": "1",
+  "end": "0",
+  "tot_rec_num": "3",
+  "begin": "1",
+  "sys_dt": "20210816"
+}

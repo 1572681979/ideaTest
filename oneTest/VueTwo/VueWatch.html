@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通过vue属性watch(监听)来实现简单购物车页面</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table width="600px" style="text-align: center">
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>商品名</th>
+                <th>数量</th>
+                <th>价格</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <template v-for="(product,index) in products">
+                <tr>
+                    <td>{{index+1}}</td>
+                    <td>{{product.pName}}</td>
+                    <td>
+                        <button v-on:click="product.pNum--" v-bind:disabled="product.pNum===0">➖</button>
+                        <label v-model:pNum>{{product.pNum}}</label>
+                        <button @click="product.pNum++">➕</button>
+                    </td>
+                    <td>{{product.pPrice}}</td>
+                    <td>
+                        <button @click="product.pNum=0">归零</button>
+                    </td>
+                </tr>
+            </template>
+
+            </tbody>
+
+        </table>
+        <P>总价格{{totalPrice() | decimal()}}$</P>
+
+    </div>
+<script>
+    new Vue({
+        el : "#app",
+        data : {
+          products : [
+              {
+                  pName : "小米手机",
+                  pNum : 0,
+                  pPrice : 999.9
+              },
+              {
+                  pName : "华为手机",
+                  pNum : 0,
+                  pPrice : 666.9
+              },
+              {
+                  pName : "OPPO手机",
+                  pNum : 0,
+                  pPrice : 1000.9
+              }
+          ]
+        },
+        methods : {
+            totalPrice : function (){
+                var totalP=0;
+                for (let i = 0; i < this.products.length; i++) {
+                    totalP += this.products[i].pNum*this.products[i].pPrice;
+                }
+                return totalP;
+            }
+        },
+        /*过滤器*/
+        filters : {
+            decimal : function (val){
+                return val.toFixed(2)
+            }
+        }
+
+
+    })
+</script>
+</body>
+</html>

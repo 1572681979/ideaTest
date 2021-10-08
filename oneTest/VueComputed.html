@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的计算属性</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="demo">
+        {{message}}<br>
+        <p>{{currentime1()}}</p>
+        <p>{{currentime2}}</p>
+    </div>
+
+    <script type="text/javascript">
+        var vm=new Vue({
+            el:"#demo",
+            data:{
+                message:"Vue的计算属性-computed"
+            },
+            methods:{
+                currentime1:function () {
+                    return Date.now();      //返回一个时间戳
+                }
+            },
+            computed:{      //计算属性:methods,computed方法名不能重名
+                currentime2:function () {
+                    return Date.now();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

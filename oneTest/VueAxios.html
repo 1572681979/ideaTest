@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue+Axios实现异步通信</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style type="text/css">
+        [v-clock]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+  <div id="demo" v-clock>
+      <span v-for="item in info.data">
+          {{item.usr_nm}}<br>
+          {{item.id}}<br>
+          {{item.mbl_no}}<br>
+      </span>
+      <a v-bind:href="info.test_url">百度一下</a>
+      <h1>{{info.test_url}}</h1>
+  </div>
+
+  <script type="text/javascript">
+      var va=new Vue({
+          el:"#demo",
+          //data属性vm
+          //data方法axios
+          data(){
+              //请求返回的参数格式必须和相应json数据格式一样
+              return{
+                  info:{
+                      data:[
+                          {
+                              usr_nm:null,
+                              id:null
+                          }
+                      ],
+                      test_url:null
+                  }
+              }
+          },
+          mounted(){//钩子函数,链式编程,es6新特性
+              axios.get("./data.json").then(response=>(this.info=response.data));
+
+          }
+      });
+  </script>
+</body>
+</html>

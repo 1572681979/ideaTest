@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class + v-bind动态样式绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style type="text/css">
+        .blackTheme{
+            width: 200px;
+            height: 200px;
+            background: black;
+            color: aliceblue;
+            border-radius: 25px;
+            border: 1px solid #42b983;
+        }
+        .whiteTheme{
+            width: 150px;
+            height: 150px;
+            background: antiquewhite;
+            color: black;
+            border: 1px solid black;
+        }
+        .fontFamily{
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--不动态绑定时引用多个样式的写法-->
+        <div class="whiteTheme fontFamily">
+            <span>不绑定时多样式的写法</span>
+        </div>
+        <hr>
+        <!--动态绑定时引用多个样式的写法-->
+        <div v-bind:class="{'blackTheme' : black,'whiteTheme' : white}">
+            <p>{{themeName}}</p>
+        </div>
+        <button @click="black=false,white=true,themeName='白色主题'">白色主题</button>
+        <button @click="black=true,white=false,themeName='黑色主题'">黑色主题</button>
+        <hr>
+        <!--通过对象来动态绑定样式-->
+        <div :class="objectTheme">通过对象来动态绑定样式</div>
+        <hr>
+        <!--通过计算属性来动态绑定样式-->
+        <div :class="classTheme">计算属性来动态绑定样式</div>
+        <div style="width: 200px;height:200px"></div>
+    </div>
+    <script>
+        new Vue({
+            el : "#app",
+            data : {
+                themeName : "主题样式切换",
+                black : null,
+                white : null,
+                objectTheme : {
+                    blackTheme : true,
+                    fontFamily : true
+                }
+            },
+            computed : {
+                classTheme : function (){
+                    return {
+                        blackTheme : this.black===null && this.white===null,
+                        fontFamily : this.black != null
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

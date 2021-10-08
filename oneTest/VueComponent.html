@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue自定义组件Component</title>
+    <!--导入Vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <!--view层模板-->
+    <ul id="app">
+        <haha v-for="item in items" v-bind:itemone="item"></haha>
+    </ul>
+
+
+
+    <script>
+        /*先注册组合*/
+        Vue.component("haha",{
+            props: ["itemone"],
+            template:'<li>{{itemone}}</li>'
+        });
+        /*再实例化vue*/
+        var vm=new Vue({
+            el:"#app",
+            data: {
+                items: ["Java","Linux","Vue.js","Git"]
+            }
+        });
+    </script>
+</body>
+</html>

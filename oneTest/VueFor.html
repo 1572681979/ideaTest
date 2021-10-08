@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue实现显示数组/集合数据</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <ul id="app">
+        <li v-for="(item,index) in items">
+          {{prefix}}<=={{item.message}}==>{{index}}
+        </li>
+    </ul>
+
+    <script type="text/javascript">
+        var app=new Vue({
+            el:"#app",
+            data:{
+                prefix:"这是前缀",
+                items:[
+                    {message:"我说Vue"},
+                    {message:"我说java"},
+                    {message:"我说运维"},
+                    {message:"我说测试"},
+                    {message:"我说jQuery"}
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

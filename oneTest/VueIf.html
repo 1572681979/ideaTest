@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue实现if</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <h1 v-if="results">Yes</h1>
+        <h1 v-else>No</h1>
+    </div>
+    <div id="selects">
+        <h1 v-if="type==='A'">A</h1>
+        <h1 v-else-if="type==='B'">B</h1>
+        <h1 v-else-if="type==='C'">C</h1>
+        <h1 v-else-if="type==='D'">D</h1>
+        <h1 v-else>E</h1>
+    </div>
+    <script type="text/javascript">
+        var app=new Vue({
+            el:"#app",
+            data:{
+                results:true
+            }
+        });
+        var selects=new Vue({
+            el:"#selects",
+            data:{
+                type:"A"
+            }
+        })
+    </script>
+</body>
+</html>

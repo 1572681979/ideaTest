@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue自定义事件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="demo">
+        <todo>
+            <todo-title slot="todo-title" v-bind:title="todoTitle"></todo-title>
+            <todo-items slot="todo-items" v-for="(item,index) in todoItems"
+                        :item="item" :index="index" @removeitem="removeItem(index)" @addrowitem="addrowItem(index)"></todo-items>
+        </todo>
+    </div>
+    <script type="text/javascript">
+        /*定义插槽slot*/
+        Vue.component("todo",{
+            template:
+                "<div>\
+                    <slot name='todo-title'></slot>\
+                    <ul>\
+                        <slot name='todo-items'></slot>\
+                    </ul>\
+                </div>"
+        });
+        Vue.component("todo-title",{
+            props:["title"],
+            template:"<h2>{{title}}</h2>"
+        });
+        Vue.component("todo-items",{
+            props:["item","index"],
+            /*只能绑定当前组件的方法*/
+            template:"<li>{{index+1}}=>{{item}}<button @click='remove'>➖</button><button @click='addrow'>➕</button></li>",
+            methods:{
+                remove:function (index) {
+                    this.$emit('removeitem',index)
+                },
+                addrow:function (index) {
+                    this.$emit('addrowitem',index)
+                }
+            }
+        });
+        var vm=new Vue({
+            el:"#demo",
+            data:{
+                todoTitle:"古代美人",
+                todoItems:["貂蝉","西施","王昭君","小乔"]
+            },
+            methods:{
+                removeItem:function (index) {
+                    console.log("删除 "+this.todoItems[index]+" 成功!")
+                    this.todoItems.splice(index,1);
+                },
+                addrowItem:function (index) {
+                    console.log("添加 "+this.todoItems[index]+" 成功!")
+                    this.todoItems.splice(index+1,0,this.todoItems[index]);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

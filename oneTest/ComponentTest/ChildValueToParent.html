@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子组件给父组件传值</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <component-parent v-on:textChanged="textChanged($event)"></component-parent>
+    </div>
+    <script>
+        Vue.component("component-parent",{
+            template : "<child-component>{{parentMsg}}</child-component>",
+            data () {
+                return {
+                    parentMsg : "我是要被子组件修改的值"
+                }
+            },
+            methods : {
+                textChanged : function (msg){
+                    this.parentMsg=msg
+                }
+            }
+        })
+        new Vue({
+            el : "#app",
+        })
+    </script>
+</body>
+</html>
